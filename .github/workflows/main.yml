@@ -1,0 +1,10 @@
+name: Review PR 
+on:
+  pull_request:
+    types: [opened]
+    
+jobs:
+  - name: Shift Left Secure Action
+  # You may pin to the exact commit or the version.
+  # uses: dmdhrumilmistry/Shift-Left-Secure@7b0d6684dcd8e2f3c1d7164ea72ca834c9a84110
+    uses: dmdhrumilmistry/Shift-Left-Secure@v0.2.0
