@@ -3,8 +3,14 @@ on:
   pull_request:
     types: [opened]
 jobs:
-  update-description:
+  review_security_issues_and_bugs:
     runs-on: ubuntu-latest
+    env:
+        OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        REPO: ${{ github.repository }}
+
     steps:
     - name: setup python
       uses: actions/setup-python@v4
@@ -17,9 +23,4 @@ jobs:
           pip install shift-left-secure
           
     - name: Review PR
-      env:
-        OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PR_NUMBER: ${{ github.event.pull_request.number }}
-        REPO: ${{ github.repository }}
       run: python -m shift_left_secure.action
