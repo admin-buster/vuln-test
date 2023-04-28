@@ -17,9 +17,10 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: install shift-left-secure package and run review on PR
+    - name: install shift-left-secure package
       run: |
           python -m pip install --upgrade pip
           pip install shift-left-secure
-          python -m shift_left_secure.action
           
+    - name: Review PR
+      run: python -m shift_left_secure.gh_action
